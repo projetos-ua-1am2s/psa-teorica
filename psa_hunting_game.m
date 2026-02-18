@@ -20,7 +20,6 @@ podemos fazer cada um uma inteligência
 %}
 
 
-
 % usar F5 para executar
 clc % limpar o command window
 clear all % limpar todas as variaveis da memoria
@@ -62,31 +61,30 @@ for k=1:50
     
     %% Desenhar jogadores
     for i=1:size(s,2) % size(s,2) dá o número de jogadores
+
+
         %% Jogador que caça outro
-        
-        
-        % cheking if player is out of bounds
-        if s(i).x < -10 || s(i).x > 10 || s(i).y < -10 || s(i).y > 10
-                s(i).killed = 1; % Mark player as killed if out of arena
-        end
-    
+            % ver se o jogador está fora do mapa e se estiver metê-lo numa
+            % posição aleatória
+            s = check_bounds(s,i);
+
         %% grafical code
-        if isgraphics(s(i).hcircle) 
-            % this prevents error in set command due to the window being
-            % closed
-            set(s(i).hcircle, 'XData', s(i).x , 'YData', s(i).y)
-            
-    
-            xtip = s(i).x +  vmax * cos(s(i).ang);
-            ytip = s(i).y +  vmax * sin(s(i).ang);
-            set(s(i).harrow,  'XData', [s(i).x, xtip] , ...
-                'YData', [s(i).y, ytip])
-          
-            set(s(i).htext, 'Position', [s(i).x, s(i).y+0.5, 0]);
-            if s(i).killed == 1
-                set(s(i).htext, 'String', [s(i).name ' (killed)']);
-            end
-        end 
+            if isgraphics(s(i).hcircle) 
+                % this prevents error in set command due to the window being
+                % closed
+                set(s(i).hcircle, 'XData', s(i).x , 'YData', s(i).y)
+                
+        
+                xtip = s(i).x +  vmax * cos(s(i).ang);
+                ytip = s(i).y +  vmax * sin(s(i).ang);
+                set(s(i).harrow,  'XData', [s(i).x, xtip] , ...
+                    'YData', [s(i).y, ytip])
+              
+                set(s(i).htext, 'Position', [s(i).x, s(i).y+0.5, 0]);
+                if s(i).killed == 1
+                    set(s(i).htext, 'String', [s(i).name ' (killed)']);
+                end
+            end 
 
          
         
