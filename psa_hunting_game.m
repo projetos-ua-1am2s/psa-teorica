@@ -1,8 +1,9 @@
-
 %% notes from class 
 %{
 when you use a pause command you have to terminate the execution for you to
 be abble to run the code again.
+
+
 
 
 tarefas
@@ -36,45 +37,8 @@ hold on;
 %% Parâmetros do jogo
 vmax = 0.6;
 
-%% Criar as equipas
-i = 0;
-
-i = i + 1;
-s(i).name = 'Francisco';
-s(i).team = 'red';
-s(i).color = [1 0 0];
-s(i).x = rand * 16 -8;
-s(i).y = rand * 16 -8;
-s(i).ang = rand*2*pi;
-s(i).killed = 0;
-
-i = i + 1;
-s(i).name = 'Francisca';
-s(i).team = 'red';
-s(i).color = [1 0 0];
-s(i).x = rand * 16 -8 ;
-s(i).y = rand * 16 -8;
-s(i).ang = rand*2*pi;
-s(i).killed = 0;
-
-
-i = i + 1;
-s(i).name = 'Matilde';
-s(i).team = 'green';
-s(i).color = [0 0.5 0];
-s(i).x = rand * 16 -8;
-s(i).y = rand * 16 -8;
-s(i).ang = rand*2*pi;
-s(i).killed = 0;
-
-i = i + 1;
-s(i).name = 'João';
-s(i).team = 'blue';
-s(i).color = [0 0 1];
-s(i).x = rand * 16 -8 ;
-s(i).y = rand * 16 -8;
-s(i).ang = rand*2*pi;
-s(i).killed = 0;
+%% criar equipas e jogadores 
+s = create_players(9)
 
 %% Desenhar jogadores na posição inicial
 for i=1:size(s,2) % size(s,2) dá o número de jogadores
@@ -90,7 +54,7 @@ for k=1:50
 
     %% Movimentar Jogadores
     for i=1:size(s,2) % size(s,2) dá o número de jogadores
-        s = psa_w8_function_movePlayer(s, i, vmax);
+        s = move_player(s, i, vmax);
     end
 
 
@@ -107,17 +71,22 @@ for k=1:50
         end
     
         %% grafical code
-        set(s(i).hcircle, 'XData', s(i).x , 'YData', s(i).y)
-
-        xtip = s(i).x +  vmax * cos(s(i).ang);
-        ytip = s(i).y +  vmax * sin(s(i).ang);
-        set(s(i).harrow,  'XData', [s(i).x, xtip] , ...
-            'YData', [s(i).y, ytip])
-      
-        set(s(i).htext, 'Position', [s(i).x, s(i).y+0.5, 0]);
-        if s(i).killed == 1
-            set(s(i).htext, 'String', [s(i).name ' (killed)']);
-        end
+        if isgraphics(s(i).hcircle) 
+            % this prevents error in set command due to the window being
+            % closed
+            set(s(i).hcircle, 'XData', s(i).x , 'YData', s(i).y)
+            
+    
+            xtip = s(i).x +  vmax * cos(s(i).ang);
+            ytip = s(i).y +  vmax * sin(s(i).ang);
+            set(s(i).harrow,  'XData', [s(i).x, xtip] , ...
+                'YData', [s(i).y, ytip])
+          
+            set(s(i).htext, 'Position', [s(i).x, s(i).y+0.5, 0]);
+            if s(i).killed == 1
+                set(s(i).htext, 'String', [s(i).name ' (killed)']);
+            end
+        end 
 
          
         
