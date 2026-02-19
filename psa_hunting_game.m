@@ -22,7 +22,7 @@ podemos fazer cada um uma inteligência
 
 % usar F5 para executar
 clc % limpar o command window
-clear % limpar todas as variaveis da memoria
+clear all % limpar todas as variaveis da memoria
 close all % limpar todas as figuras
 
 %% Draw the arena
@@ -58,17 +58,23 @@ for c = 1:length(colors)
     end
 end
 
-%% Desenhar jogadores na posição inicial
-for i=1:size(s,2) % size(s,2) dá o número de jogadores
-    s(i).hcircle = plot(s(i).x, s(i).y, 'o', 'Color', s(i).color, 'MarkerSize', 12);
+%% Drawing players in their initial position
+for i=1:size(s,2) % size(s,2) gives the number of players
+    % creating players in the graph with solid colors
+    s(i).hcircle = plot(s(i).x, s(i).y, 'o', ...
+    'Color', s(i).color, ...
+    'MarkerSize', 12, ...
+    'MarkerFaceColor', s(i).color);
+
     s(i).htext = text(s(i).x, s(i).y + 0.5, s(i).name);
     s(i).harrow = plot([s(i).x, s(i).x +  vmax * cos(s(i).ang)], ...
         [s(i).y, s(i).y +  vmax * sin(s(i).ang)], '-', 'Color', s(i).color);
 end
 
-%% JOGO __________________________________________________
-for k=1:50
-
+%% GAME __________________________________________________
+% this while is responsible to stop the game when a team has lost all of
+% its players.
+while check_game_over(s) == false
 
     % Move the players
     for i=1:size(s,2)
