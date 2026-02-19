@@ -4,9 +4,6 @@ if s(i).killed == 1 % to stop the movement
     return
 end
 
-%% Estratégia apenas de caça (por enquanto)
-% Tudo isto pode passar para dentro do "if s(i).color == 'r'" para termos
-% outras estratégias para as outras cores
 
 kill_dst = 0.3;
 
@@ -46,16 +43,13 @@ if min_dst < kill_dst
     return
 end
 
-% Move towards the prey
 prey_x = s(idx).x;
 prey_y = s(idx).y;
 ang_to_prey = atan2( prey_y - s(i).y , prey_x - s(i).x);
 
+% Move towards the prey
 s(i).x = s(i).x + vmax * cos(ang_to_prey);
 s(i).y = s(i).y + vmax * sin(ang_to_prey);
-s(i).ang = ang_to_prey;
-
-
 
 % %{ commenting the directional movement
 % %% move in the current direction

@@ -22,10 +22,10 @@ podemos fazer cada um uma inteligência
 
 % usar F5 para executar
 clc % limpar o command window
-clear % limpar todas as variaveis da memoria
+clear all % limpar todas as variaveis da memoria
 close all % limpar todas as figuras
 
-%% Draw the arena
+%% Desenhar a Arena
 
 plot([-10, 10, 10, -10, -10], ...
      [10, 10, -10, -10, 10], ...
@@ -33,30 +33,13 @@ plot([-10, 10, 10, -10, -10], ...
 axis([-12 12 -12 12])
 hold on;
 
-%% Parameters
+%% Parâmetros do jogo
 vmax = 0.6;
 
 %% Create teams and players
 n_pts_color = 3;      % Number of players per team
 colors = ['r', 'g', 'b'];
-total_pts = n_pts_color * length(colors);
-
-idx = 1;
-
-for c = 1:length(colors)
-    for i = 1:n_pts_color
-
-        s(idx).color = colors(c);
-        s(idx).x = rand * 16 -8;     % rand generates values between 0 and 1
-        s(idx).y = rand * 16 -8;     % values between -8 and 8
-        s(idx).ang = rand * 2 * pi;
-        s(idx).killed = 0;
-        s(idx).name = colors(c) + "-" + i;      % name the player (r-1, r-2...)
-        
-        idx = idx + 1;
-
-    end
-end
+total_pts = n_pts_color * length(colors);   
 
 %% Desenhar jogadores na posição inicial
 for i=1:size(s,2) % size(s,2) dá o número de jogadores
@@ -70,26 +53,30 @@ end
 for k=1:50
 
 
-    % Move the players
-    for i=1:size(s,2)
+    %% Movimentar Jogadores
+    for i=1:size(s,2) % size(s,2) dá o número de jogadores
         s = move_player(s, i, vmax);
     end
 
-    
-    % Draw the players in their new positions
-    for i=1:size(s,2)
 
-        % Jogador que caça outro
+
+    
+    %% Desenhar jogadores
+    for i=1:size(s,2) % size(s,2) dá o número de jogadores
+
+
+        %% Jogador que caça outro
             % ver se o jogador está fora do mapa e se estiver metê-lo numa
             % posição aleatória
             s = check_bounds(s,i);
 
-        % grafical code
+        %% grafical code
             if isgraphics(s(i).hcircle) 
                 % this prevents error in set command due to the window being
                 % closed
                 set(s(i).hcircle, 'XData', s(i).x , 'YData', s(i).y)
                 
+        
                 xtip = s(i).x +  vmax * cos(s(i).ang);
                 ytip = s(i).y +  vmax * sin(s(i).ang);
                 set(s(i).harrow,  'XData', [s(i).x, xtip] , ...
@@ -99,7 +86,9 @@ for k=1:50
                 if s(i).killed == 1
                     set(s(i).htext, 'String', [s(i).name ' (killed)']);
                 end
-            end  
+            end 
+
+         
         
     end
 
