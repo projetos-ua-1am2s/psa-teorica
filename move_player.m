@@ -15,13 +15,17 @@ function s = move_player(s, i, vmax)
         return % We killed, so we stop moving this turn
     end
 
-    % 3. DECISION TIME: Hunt or Flee?
+    %% 3. DECISION TIME: Hunt or Flee?
+    % to avoid double movment or chosing wrong between hunting or fleeing
+    % this section of the code was created. 
+
+
     % We need to choose the final_ang based on the distances
         
     if flee_dst < 0.5
-        final_ang = flee_ang;
+        final_ang = flee_ang; % prioritize fleeing if a hunter is close
     else
-        final_ang = hunt_ang;
+        final_ang = hunt_ang; % otherwise the player will simply hunt
     end
 
     % 3.1. Normalize the final angle to ensure it is within the range [0, 2*pi]

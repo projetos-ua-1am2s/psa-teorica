@@ -1,4 +1,5 @@
 function [flee_ang, min_dst] = get_flee_info(s, i)
+    
     k = 1;
     
     if s(i).color == 'r'
