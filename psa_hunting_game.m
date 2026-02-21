@@ -50,12 +50,13 @@ end
 %% JOGO __________________________________________________
 for k=1:50
 
-
+    %{
     %% Movimentar Jogadores
     for i=1:size(s,2) % size(s,2) dá o número de jogadores
         s = move_player(s, i, vmax);
+        s = flee_player(s, i, vmax);
     end
-
+    %}
 
 
     
