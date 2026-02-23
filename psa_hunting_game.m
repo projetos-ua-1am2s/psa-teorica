@@ -41,6 +41,13 @@ n_pts_color = 3;      % Number of players per team
 colors = ['r', 'g', 'b'];
 total_pts = n_pts_color * length(colors);
 
+% Preallocate struct array to avoid dynamic growth in the nested loops
+s(total_pts).color  = ' ';
+s(total_pts).x      = 0;
+s(total_pts).y      = 0;
+s(total_pts).ang    = 0;
+s(total_pts).killed = 0;
+s(total_pts).name   = "";
 idx = 1;
 
 for c = 1:length(colors)
