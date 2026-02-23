@@ -131,16 +131,21 @@ for i = 1:size(s,2)
     end
 end
 
+% Determine team sizes based on the players still in the game setup
+total_r = sum([s.color] == 'r');
+total_g = sum([s.color] == 'g');
+total_b = sum([s.color] == 'b');
+
 % Print the losing team to the Command Window
-if killed_r == 3
+if killed_r == total_r && total_r > 0
     disp('Game Over! Red Team lost! 🔴')
     text(0, 0, 'GAME OVER - Red Team Lost!', 'HorizontalAlignment', ...
         'center', 'FontSize', 16, 'Color', 'r', 'FontWeight', 'bold');
-elseif killed_g == 3
+elseif killed_g == total_g && total_g > 0
     disp('O jogo acabou! A equipa que perdeu foi a Verde (Green)! 🟢')
     text(0, 0, 'GAME OVER - Green Team Lost!', 'HorizontalAlignment', ...
         'center', 'FontSize', 16, 'Color', 'g', 'FontWeight', 'bold');
-elseif killed_b == 3
+elseif killed_b == total_b && total_b > 0
     disp('O jogo acabou! A equipa que perdeu foi a Azul (Blue)! 🔵')
     text(0, 0, 'GAME OVER - Blue Team Lost!', 'HorizontalAlignment', ...
         'center', 'FontSize', 16, 'Color', 'b', 'FontWeight', 'bold');
