@@ -16,7 +16,7 @@ function s = move_player(s, i, vmax)
     end
 
     %% 3. DECISION TIME: Hunt or Flee?
-    % to avoid double movment or chosing wrong between hunting or fleeing
+    % to avoid double movement or choosing wrong between hunting or fleeing
     % this section of the code was created. 
 
 
