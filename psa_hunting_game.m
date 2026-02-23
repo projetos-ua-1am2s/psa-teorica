@@ -51,7 +51,7 @@ for c = 1:length(colors)
         s(idx).y = rand * 16 -8;     % values between -8 and 8
         s(idx).ang = rand * 2 * pi;
         s(idx).killed = 0;
-        s(idx).name = colors(c) + "-" + i;      % name the player (r-1, r-2...)
+        s(idx).name = sprintf('%c-%d', colors(c), i);      % name the player (r-1, r-2...)
         
         idx = idx + 1;
 
