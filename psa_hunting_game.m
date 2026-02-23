@@ -1,25 +1,3 @@
-%% notes from class 
-%{
-when you use a pause command you have to terminate the execution for you to
-be abble to run the code again.
-
-
-
-
-tarefas
-    if player out of arena killed == 1 
-    and hunting other players 
-
-tarefa -- jogo a funcionar
-    comportamento de caça e fuga
-    3 payers 
-    com limites
-   
-extra 
-podemos fazer cada um uma inteligência
-%}
-
-
 % usar F5 para executar
 clc % limpar o command window
 clear all % limpar todas as variaveis da memoria
@@ -48,6 +26,9 @@ s(total_pts).y      = 0;
 s(total_pts).ang    = 0;
 s(total_pts).killed = 0;
 s(total_pts).name   = "";
+s(total_pts).fatigue = 0; % used to slow down a player when he is being
+% chased to minimise endless loops of chases
+s(total_pts).speed = 0; % enables changing each players speed individuallyr
 idx = 1;
 
 for c = 1:length(colors)
@@ -59,7 +40,9 @@ for c = 1:length(colors)
         s(idx).ang = rand * 2 * pi;
         s(idx).killed = 0;
         s(idx).name = sprintf('%c-%d', colors(c), i);      % name the player (r-1, r-2...)
-        
+        s(idx).fatigue = 0;
+        s(idx).speed = vmax;
+
         idx = idx + 1;
 
     end
