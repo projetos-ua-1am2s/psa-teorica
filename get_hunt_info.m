@@ -10,7 +10,7 @@ function [hunt_ang, min_dst, prey_idx] = get_hunt_info(s, i)
         target = 'r';
     end
     
-    % Saves the potencial preys
+    % Saves the potential preys
     for j = 1:size(s,2)
         if s(j).color == target && s(j).killed == 0
             preys(k).idx = j;
