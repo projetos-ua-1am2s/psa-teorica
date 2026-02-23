@@ -21,8 +21,15 @@ function game_over = check_game_over(s)
         end
     end
     
-    % Check if any team has all 3 players killed
-    if killed_r == 3 || killed_g == 3 || killed_b == 3
+    % Derive total players per team from s
+    total_r = sum([s.color] == 'r');
+    total_g = sum([s.color] == 'g');
+    total_b = sum([s.color] == 'b');
+
+    % Check if any team has all its players killed
+    if (total_r > 0 && killed_r == total_r) || ...
+       (total_g > 0 && killed_g == total_g) || ...
+       (total_b > 0 && killed_b == total_b)
         game_over = true;
     end
 end
