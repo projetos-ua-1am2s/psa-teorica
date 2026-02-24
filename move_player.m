@@ -9,6 +9,8 @@ function s = move_player(s, i, vmax)
 
     %% 1. Gather info from our "radars"
     [hunt_ang, hunt_dst, prey_idx] = get_hunt_info(s, i);
+    s(i).hunting = prey_idx; % stores who the player is hunting
+
     [flee_ang, flee_dst] = get_flee_info(s, i);
 
     %% Game rule: if hunter is close -- slow down player
@@ -17,9 +19,9 @@ function s = move_player(s, i, vmax)
         s(i).fatigue = s(i).fatigue + 1;
 
         if s(i).fatigue >= 50
-            s(i).speed = s(i).speed * 0.9;
+            s(i).speed = vmax * 0.9;
         elseif s(i).fatigue >= 500
-            s(i).speed = s(i).speed * 0.5;
+            s(i).speed = vmax * 0.5;
         end
     else 
         s(i).fatigue = max(s(i).fatigue - 1, 0); % Reset fatigue if fleeing

@@ -29,6 +29,7 @@ s(total_pts).name   = "";
 s(total_pts).fatigue = 0; % used to slow down a player when he is being
 % chased to minimise endless loops of chases
 s(total_pts).speed = 0; % enables changing each players speed individuallyr
+s(total_pts).hunting = 0; % enables memory in hunting and pack hunting
 idx = 1;
 
 for c = 1:length(colors)
@@ -42,6 +43,7 @@ for c = 1:length(colors)
         s(idx).name = sprintf('%c-%d', colors(c), i);      % name the player (r-1, r-2...)
         s(idx).fatigue = 0;
         s(idx).speed = vmax;
+        s(idx).hunting = 0;
 
         idx = idx + 1;
 
