@@ -1,7 +1,8 @@
 function final_ang = get_green_angle(s, i, hunt_ang, hunt_dst, flee_ang, flee_dst)
+
     
-    % Red Team Logic: prioritize fleeing if a hunter is close
-    if flee_dst < 0.5
+    % Green Team Logic: prioritize fleeing if a hunter is close
+    if flee_dst < 0.7
         
         % --- SMART WALL TELEPORT TACTIC ---
         % 1. Calculate distance to the 4 walls
