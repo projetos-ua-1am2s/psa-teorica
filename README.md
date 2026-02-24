@@ -26,6 +26,8 @@ As an escape strategy, the red team players try to evade the predators by moving
 
 The main differentiator of the green team's strategy is taking advantage of the random position assignment that occurs when a player hits one of the walls. To do this, when a predator is nearby, the player looks for the nearest wall, and if it is close enough, heads directly towards it.
 
+For hunting, the green team also uses the predicting strategy.
+
 ### Blue Team
 
 The blue team uses a vector addition strategy, assigning them the appropriate weights. Hunting always has a constant weight, while fleeing becomes more urgent the closer the predator gets. If the predator is too far away, the weight for fleeing will be 0. However, if the predator is very close, the player abandons this strategy and flees at 90º angles.
