@@ -14,13 +14,13 @@ function s = create_players(a)
         %% cor e equipa 
         if i <= a/3
             s(i).team = 'red';
-            s(i).color = [1 0 0]; % Vermelho 🔴
+            s(i).color = 'r'; % Vermelho
         elseif i <= 2*a/3
             s(i).team = 'green';
-            s(i).color = [0 0.5 0]; % Verde 🟢
+            s(i).color = 'g'; % Verde
         else
             s(i).team = 'blue';
-            s(i).color = [0 0 1]; % Azul 🔵
+            s(i).color = 'b'; % Azul
         end
     end
 end
