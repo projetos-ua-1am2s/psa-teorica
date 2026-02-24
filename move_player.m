@@ -15,13 +15,12 @@ function s = move_player(s, i, vmax)
 
     %% Game rule: if hunter is close -- slow down player
     % to avoid endless loops of players circling
+    % with more complex AI this fix becomes less necessary
     if flee_dst < 0.6
         s(i).fatigue = s(i).fatigue + 1;
 
-        if s(i).fatigue >= 50
+        if s(i).fatigue >= 500000000
             s(i).speed = vmax * 0.9;
-        elseif s(i).fatigue >= 500
-            s(i).speed = vmax * 0.5;
         end
     else 
         s(i).fatigue = max(s(i).fatigue - 1, 0); % Reset fatigue if fleeing
@@ -37,7 +36,7 @@ function s = move_player(s, i, vmax)
     if s(i).color == 'r'
         final_ang = get_red_angle(s, i, hunt_ang, hunt_dst, flee_ang, flee_dst, prey_idx);
     elseif s(i).color == 'g'
-        final_ang = get_green_angle(s, i, hunt_ang, hunt_dst, flee_ang, flee_dst);
+        final_ang = get_green_angle(s, i, hunt_ang, hunt_dst, flee_ang, flee_dst, prey_idx);
     elseif s(i).color == 'b'
         final_ang = get_blue_angle(s, i, hunt_ang, hunt_dst, flee_ang, flee_dst);
     end
