@@ -33,7 +33,7 @@ function s = move_player(s, i, vmax)
 
     %% 3. DECISION TIME: Ask the specific team AI for the desired angle
     if s(i).color == 'r'
-        final_ang = get_red_angle(s, i, hunt_ang, hunt_dst, flee_ang, flee_dst);
+        final_ang = get_red_angle(s, i, hunt_ang, hunt_dst, flee_ang, flee_dst, prey_idx);
     elseif s(i).color == 'g'
         final_ang = get_green_angle(s, i, hunt_ang, hunt_dst, flee_ang, flee_dst);
     elseif s(i).color == 'b'
