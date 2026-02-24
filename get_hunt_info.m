@@ -22,9 +22,9 @@ function [hunt_ang, min_dst, prey_idx] = get_hunt_info(s, i)
         if s(i).color == 'g'
             for m = 1:size(s,2)
                 
-                % if it is from my team (same color) and not me (m ~= i), and
-                % is hunting j
-                if s(m).color == s(i).color && m ~= i && s(m).hunting == j
+                % if it is from my team (same color), not me (m ~= i),
+                % is alive, and is hunting j
+                if s(m).color == s(i).color && m ~= i && s(m).killed == 0 && s(m).hunting == j
                     is_taken = true; % prey is already being hunted
                 end
             end
