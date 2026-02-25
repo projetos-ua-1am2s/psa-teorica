@@ -16,7 +16,7 @@ function s = move_player(s, i, vmax)
     %% Game rule: if hunter is close -- slow down player
     % to avoid endless loops of players circling
     % with more complex AI this fix becomes less necessary
-    if flee_dst < 0.6
+if flee_dst < 0.6
         s(i).fatigue = s(i).fatigue + 1;
 
         if s(i).fatigue >= 500000000
